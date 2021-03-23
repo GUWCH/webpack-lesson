@@ -28,6 +28,10 @@ module.exports = {
     filename: "[name].js",
   },
   mode: "development",
+  // 解析自定义loader的路径
+  resolveLoader: {
+    modules: ["node_modules", "./myLoaders"],
+  },
   module: {
     rules: [
       {
@@ -36,12 +40,13 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "less-loader",
-        ],
+        // use: [
+        //   MiniCssExtractPlugin.loader,
+        //   "css-loader",
+        //   "postcss-loader",
+        //   "less-loader",
+        // ],
+        use: ["custom-style-loader", "custom-css-loader", "custom-less-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/,
@@ -67,7 +72,15 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: "babel-loader",
+        //自下往上，自右往左
+        use: [
+          "babel-loader",
+          "replace-loader",
+          {
+            loader: "replace-loader-async",
+            options: { name: "hohoho" },
+          },
+        ],
       },
     ],
   },
