@@ -40,13 +40,13 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        // use: [
-        //   MiniCssExtractPlugin.loader,
-        //   "css-loader",
-        //   "postcss-loader",
-        //   "less-loader",
-        // ],
-        use: ["custom-style-loader", "custom-css-loader", "custom-less-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+        ],
+        // use: ["custom-style-loader", "custom-css-loader", "custom-less-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/,
@@ -54,7 +54,7 @@ module.exports = {
           loader: "url-loader",
           options: {
             name: "[name].[ext]",
-            outputPath: "images/",
+            outputPath: "images/", // 输出目录
             publicPath: "../images",
             limit: 1024 * 3, //阈值 超过阈值的图片会独立文件，没有超过会处理成base64
           },
