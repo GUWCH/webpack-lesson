@@ -75,6 +75,7 @@ module.exports = {
         //自下往上，自右往左
         use: [
           "babel-loader",
+          "remove-console",
           "replace-loader",
           {
             loader: "replace-loader-async",

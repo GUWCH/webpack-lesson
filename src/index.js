@@ -9,7 +9,11 @@
 // });
 
 // compiler.run();
-
+import axios from "axios";
 import "./index.css";
 import "./index.less";
 console.log("hello world");
+
+axios.get("/api/info").then((res) => {
+  console.log(res);
+});
